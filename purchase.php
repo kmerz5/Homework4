@@ -19,7 +19,7 @@
       <a class="nav-item nav-link" href="employee.php">Employee</a>
       <a class="nav-item nav-link" href="purchase.php">Purchase</a>
       <a class="nav-item nav-link" href="restaurant.php">Restaurant</a>
-      <a class="nav-item nav-link" href="Employee-Restaurant.php">Restaurant&Employee</a>
+      
       
     </div>
   </div>
