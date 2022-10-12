@@ -30,7 +30,7 @@
       <th>Customer ID</th>
       <th>First Name</th>
       <th>Last Name</th>
-      <th>Restaurant ID</th>
+      
     </tr>
   </thead>
   <tbody>
@@ -47,7 +47,7 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT DISTINCT Customer_ID, Customer_FirstName, Customer_LastName, Restaurant_ID FROM Customer";
+$sql = "SELECT DISTINCT Customer_ID, Customer_FirstName, Customer_LastName FROM Customer";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -58,7 +58,6 @@ if ($result->num_rows > 0) {
     <td><?=$row["Customer_ID"]?></td>
     <td><?=$row["Customer_FirstName"]?></td>
     <td><?=$row["Customer_LastName"]?></td>
-    <td><a href="hyperlink-filter.php?id=<?=$row["Restaurant_ID"]?>"><?=$row["Restaurant_ID"]?></a></td>
   </tr>
 <?php
   }
