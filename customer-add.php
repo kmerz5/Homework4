@@ -16,7 +16,7 @@
   </div>
   <div class="mb-3">
     <label for="Customer_LastName" class="form-label">Name</label>
-    <input type="text" class="form-control" id="Customer_LastName" aria-describedby="nameHelp" name="cName">
+    <input type="text" class="form-control" id="Customer_LastName" aria-describedby="nameHelp" name="lName">
     <div id="nameHelp" class="form-text">Enter the customer's last name.</div>
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
