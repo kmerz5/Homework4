@@ -64,16 +64,7 @@ if ($result->num_rows > 0) {
   // output data of each row
   while($row = $result->fetch_assoc()) {
 ?>
-  <tr>
-    <td><?=$row["Restaurant_ID"]?></td>
-    <td><?=$row["RestaurantName"]?></td>
-    <td>
-      <form method="post" action="postpage.php">
-        <input type="hidden" name="id" value="<?=$row["Restaurant_ID"]?>" />
-        <input type="submit" value="Employees" />
-      </form>
-    </td>
-  </tr>
+  
 <?php
   }
 } else {
