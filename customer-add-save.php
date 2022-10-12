@@ -20,7 +20,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
-$iName = $_POST['cName'];
+$cName = $_POST['cName'];
 
 $sql = "insert into instructor (instructor_name) value (?)";
 //echo $sql;
