@@ -22,7 +22,7 @@ if ($conn->connect_error) {
 }
 $cName = $_POST['cName'];
 
-$sql = "insert into customer (Customer_FirstName, Customer_LastName) values (?,?)";
+$sql = "insert into Customer (Customer_FirstName, Customer_LastName) values (?,?)";
 //echo $sql;
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ss", $cName,$_POST['lName']);
