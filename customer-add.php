@@ -10,14 +10,14 @@
     <h1>Add Customer</h1>
 <form method="post" action="customer-add-save.php">
   <div class="mb-3">
-    <label for="CustomerFirstName" class="form-label">Name</label>
-    <input type="text" class="form-control" id="CustomerFirstName" aria-describedby="nameHelp" name="cName">
-    <div id="nameHelp" class="form-text">Enter the instructor's name.</div>
+    <label for="Customer_FirstName" class="form-label">Name</label>
+    <input type="text" class="form-control" id="Customer_FirstName" aria-describedby="nameHelp" name="cName">
+    <div id="nameHelp" class="form-text">Enter the customer's first name.</div>
   </div>
   <div class="mb-3">
-    <label for="CustomerLastName" class="form-label">Name</label>
-    <input type="text" class="form-control" id="CustomerLastName" aria-describedby="nameHelp" name="cName">
-    <div id="nameHelp" class="form-text">Enter the instructor's name.</div>
+    <label for="Customer_LastName" class="form-label">Name</label>
+    <input type="text" class="form-control" id="Customer_LastName" aria-describedby="nameHelp" name="cName">
+    <div id="nameHelp" class="form-text">Enter the customer's last name.</div>
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
