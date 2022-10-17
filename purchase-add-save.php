@@ -31,7 +31,7 @@ $sql = "insert into Purchase (Customer_ID) values (?)";
     
     <h1>Add Purchase</h1>
 <div class="alert alert-success" role="alert">
-  New employee added.
+  New purchase added.
 </div>
     <a href="purchase.php" class="btn btn-primary">Go back</a>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
