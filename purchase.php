@@ -67,3 +67,4 @@ $conn->close();
   </tbody>
     </table>
     <a href="purchase-add.php" class="btn btn-primary"> Add New<a/>
+      <a href="purchase-delete-save.php" class="btn btn-primary"> Delete Record<a/>
