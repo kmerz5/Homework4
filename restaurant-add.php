@@ -8,7 +8,7 @@
   </head>
   <body>
     <h1>Add Restaurant</h1>
-<form method="post" action="employee-add-save.php">
+<form method="post" action="restaurant-add-save.php">
   <div class="mb-3">
     <label for="RestaurantName" class="form-label">Name</label>
     <input type="text" class="form-control" id="RestaurantName" aria-describedby="nameHelp" name="rName">
