@@ -66,4 +66,4 @@ $conn->close();
 ?>
   </tbody>
     </table>
-    <a href="employee-add.php" class="btn btn-primary"> Add New<a/>
+    <a href="purchase-add.php" class="btn btn-primary"> Add New<a/>
