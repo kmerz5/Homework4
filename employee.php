@@ -71,3 +71,4 @@ $conn->close();
   </tbody>
     </table>
     <a href="employee-add.php" class="btn btn-primary"> Add New<a/>
+      <a href="employee-delete-save.php" class="btn btn-primary"> Delete Record<a/>
