@@ -25,7 +25,7 @@ $cID = $_POST['cID'];
 $sql = "insert into Purchase (Customer_ID) values (?)";
 //echo $sql;
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $cID,$_POST);
+    $stmt->bind_param("s", $cID);
     $stmt->execute();
 ?>
     
