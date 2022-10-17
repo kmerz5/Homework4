@@ -60,9 +60,9 @@ if ($result->num_rows > 0) {
     <td><?=$row["Customer_LastName"]?></td>
     <td>
        <form method="post" action="customer-delete-save.php">
-                <input type="hidden" name="cid" value="<?=$row["Customer_id"]?>" />
-                <input type="hidden" name="saveType" value="Delete">
-                <input type="submit" class="btn" onclick="return confirm('Are you sure?')" value="Delete">
+                <input type="hidden" name="cid" value="<?=$row["Customer_ID"]?>" />
+                <input type="submit" value="Delete" class="btn btn-primary"/>
+                
               </form>
     </td>
   </tr>
