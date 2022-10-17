@@ -70,3 +70,4 @@ $conn->close();
     </table>
     <br />
     <a href="customer-add.php" class="btn btn-primary"> Add New<a/>
+      <a href="customer-delete-save.php" class="btn btn-primary"> Delete Record<a/>
