@@ -67,3 +67,4 @@ $conn->close();
   </tbody>
     </table>
     <a href="restaurant-add.php" class="btn btn-primary"> Add New<a/>
+      <a href="restaurant-delete-save.php" class="btn btn-primary"> Delete Record<a/>
