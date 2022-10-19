@@ -64,6 +64,11 @@ if ($result->num_rows > 0) {
                 <input type="submit" value="Delete" class="btn btn-primary"/>
                 
               </form>
+      <form method="post" action="customer-edit.php">
+        <input type="hidden" name="cid" value="<?=$row["Customer_ID"]?>" />
+        <input type="submit" value="Edit" class="btn btn-danger"/>
+      </form>
+      
     </td>
   </tr>
 <?php
