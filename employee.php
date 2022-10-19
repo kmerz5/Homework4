@@ -63,7 +63,7 @@ if ($result->num_rows > 0) {
   </tr>
      <td>
        <form method="post" action="employee-delete-save.php">
-                <input type="hidden" name="cid" value="<?=$row["Employee_ID"]?>" />
+                <input type="hidden" name="eid" value="<?=$row["Employee_ID"]?>" />
                 <input type="submit" value="Delete" class="btn btn-primary"/>
                 
               </form>
