@@ -21,7 +21,7 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "delete from Customer where Customer_ID=?";
+$sql = "delete from Employee where Employee_ID=?";
 //echo $sql;
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $_POST['eid']);
