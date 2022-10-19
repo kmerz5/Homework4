@@ -57,6 +57,13 @@ if ($result->num_rows > 0) {
     <td><?=$row["Restaurant_ID"]?></td>
     <td><a href="Employee-Restaurant.php?id=<?=$row["RestaurantName"]?>"><?=$row["RestaurantName"]?></a></td>
   </tr>
+     <td>
+       <form method="post" action="restaurant-delete-save.php">
+                <input type="hidden" name="rid" value="<?=$row["Restaurant_ID"]?>" />
+                <input type="submit" value="Delete" class="btn btn-primary"/>
+                
+              </form>
+    </td>
 <?php
   }
 } else {
@@ -67,4 +74,4 @@ $conn->close();
   </tbody>
     </table>
     <a href="restaurant-add.php" class="btn btn-primary"> Add New<a/>
-      <a href="restaurant-delete-save.php" class="btn btn-primary"> Delete Record<a/>
+      
