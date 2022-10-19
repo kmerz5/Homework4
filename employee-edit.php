@@ -45,7 +45,7 @@ if ($result->num_rows > 0) {
   <input type="hidden" name="eid" value="<?=$row['Employee_ID']?>">
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
-</form>
+
 <?php
   }
 } else {
