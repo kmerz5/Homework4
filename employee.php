@@ -67,6 +67,10 @@ if ($result->num_rows > 0) {
                 <input type="submit" value="Delete" class="btn btn-primary"/>
                 
               </form>
+       <form method="post" action="employee-edit.php">
+        <input type="hidden" name="eid" value="<?=$row["Employee_ID"]?>" />
+        <input type="submit" value="Edit" class="btn btn-danger"/>
+      </form>
     </td>
 <?php
   }
