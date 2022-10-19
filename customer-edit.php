@@ -34,11 +34,16 @@ if ($result->num_rows > 0) {
 
 <form method="post" action="customer-edit-save.php">
   <div class="mb-3">
-    <label for="Customer_ID" class="form-label">Name</label>
-    <input type="text" class="form-control" id="Customer_ID" aria-describedby="nameHelp" name="cid" value="<?=$row['Custoemr_ID']?>">
-    <div id="nameHelp" class="form-text">Enter the custo's name.</div>
+    <label for="Customer_FirstName" class="form-label">Name</label>
+    <input type="text" class="form-control" id="Customer_FirstName" aria-describedby="nameHelp" name="cName">
+    <div id="nameHelp" class="form-text">Enter the customer's first name.</div>
   </div>
-  <input type="hidden" name="iid" value="<?=$row['instructor_id']?>">
+  <div class="mb-3">
+    <label for="Customer_LastName" class="form-label">Name</label>
+    <input type="text" class="form-control" id="Customer_LastName" aria-describedby="nameHelp" name="lName">
+    <div id="nameHelp" class="form-text">Enter the customer's last name.</div>
+  </div>
+  <input type="hidden" name="cid" value="<?=$row['Customer_ID']?>">
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 <?php
