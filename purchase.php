@@ -57,6 +57,13 @@ if ($result->num_rows > 0) {
     <td><?=$row["Purchase_ID"]?></td>
     <td><?=$row["Customer_ID"]?></td>
   </tr>
+     <td>
+       <form method="post" action="purchase-delete-save.php">
+                <input type="hidden" name="pid" value="<?=$row["Purchase_ID"]?>" />
+                <input type="submit" value="Delete" class="btn btn-primary"/>
+                
+              </form>
+    </td>
 <?php
   }
 } else {
