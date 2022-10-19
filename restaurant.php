@@ -63,6 +63,10 @@ if ($result->num_rows > 0) {
                 <input type="submit" value="Delete" class="btn btn-primary"/>
                 
               </form>
+       <form method="post" action="restaurant-edit.php">
+        <input type="hidden" name="rid" value="<?=$row["Restaurant_ID"]?>" />
+        <input type="submit" value="Edit" class="btn btn-danger"/>
+      </form>
     </td>
 <?php
   }
