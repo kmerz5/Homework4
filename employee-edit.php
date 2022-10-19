@@ -42,7 +42,9 @@ if ($result->num_rows > 0) {
     <input type="text" class="form-control" id="Employee_LastName" aria-describedby="nameHelp" name="elName">
     <div id="nameHelp" class="form-text">Enter the customer's last name.</div>
   </div>
+  <input type="hidden" name="eid" value="<?=$row['Employee_ID']?>">
   <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 </form>
 <?php
   }
