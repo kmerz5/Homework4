@@ -25,7 +25,7 @@ $eName = $_POST['eName'];
 $sql = "update Employee set Employee_FirstName=?, Employee_LastName=? WHERE Employee_ID=?";
 //echo $sql;
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ss", $eName,$_POST['elName'],$_POST['eid']);
+    $stmt->bind_param("ssi", $eName,$_POST['elName'],$_POST['eid']);
     $stmt->execute();
 ?>
     
