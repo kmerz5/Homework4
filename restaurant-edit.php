@@ -34,8 +34,8 @@ if ($result->num_rows > 0) {
 
 <form method="post" action="restaurant-edit-save.php">
   <div class="mb-3">
-    <label for="Restaurant_Name" class="form-label">Name</label>
-    <input type="text" class="form-control" id="Restaurant_Name" aria-describedby="nameHelp" name="rName">
+    <label for="RestaurantName" class="form-label">Name</label>
+    <input type="text" class="form-control" id="RestaurantName" aria-describedby="nameHelp" name="rName">
     <div id="nameHelp" class="form-text">Enter the restaurants name.</div>
   </div>
   <input type="hidden" name="rid" value="<?=$row['Restaurant_ID']?>">
