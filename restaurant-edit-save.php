@@ -22,7 +22,7 @@ if ($conn->connect_error) {
 }
 $rName = $_POST['rName'];
 
-$sql = "update Restaurant set Restaurant_Name=? WHERE Restaurant_ID=?";
+$sql = "update Restaurant set RestaurantName=? WHERE Restaurant_ID=?";
 //echo $sql;
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("si", $rName,$_POST['rid']);
