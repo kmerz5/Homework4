@@ -22,7 +22,7 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 $sql = "SELECT DISTINCT Restaurant_ID, Employee_ID, Employee_FirstName, Employee_LastName FROM Employee WHERE Employee_ID=?";
-$result = $conn->query($sql);
+$stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $_POST['eid']);
 $stmt->execute();
 $result = $stmt->get_result();
