@@ -25,7 +25,7 @@ $cID = $_POST['cID'];
 $sql = "update Purchase set Customer_ID=? WHERE Purchase_ID=?";
 //echo $sql;
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ii", $cID,$_POST['cID'],$_POST['pid']);
+    $stmt->bind_param("ii", $cID,$_POST['pid']);
     $stmt->execute();
 ?>
     
