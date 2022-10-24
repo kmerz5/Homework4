@@ -7,6 +7,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
   </head>
   <body>
+    <div class="container"
+         
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">Navbar</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,17 +26,7 @@
     </div>
   </div>
 </nav>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Customer ID</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      
-    </tr>
-  </thead>
-  <tbody>
-    <?php
+
 $servername = "localhost";
 $username = "kyliemer_Homework3";
 $password = "ChunkyMonkey01!";
@@ -67,11 +59,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $stmtDelete = $conn->prepare($sqlDelete);
       $stmtDelete->bind_param("i", $_POST['cid']);
       $stmtDelete->execute();
-      echo '<div class="alert alert-success" role="alert">Instructor deleted.</div>';
+      echo '<div class="alert alert-success" role="alert">Customer deleted.</div>';
       break;
   }
 }
 
+?>
+  <h1>Customers</h1>
+  <table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Customer ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+    
 $sql = "SELECT DISTINCT Customer_ID, Customer_FirstName, Customer_LastName FROM Customer";
 $result = $conn->query($sql);
 
@@ -79,6 +85,7 @@ if ($result->num_rows > 0) {
   // output data of each row
   while($row = $result->fetch_assoc()) {
 ?>
+    
   <tr>
     <td><?=$row["Customer_ID"]?></td>
     <td><?=$row["Customer_FirstName"]?></td>
