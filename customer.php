@@ -46,6 +46,31 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  switch ($_POST['saveType']) {
+    case 'Add':
+      $sqlAdd = "insert into customer (Customer_FirstName, Customer_LastName) value (?,?)";
+      $stmtAdd = $conn->prepare($sqlAdd);
+      $stmtAdd->bind_param("ss", $_POST['cName'],$_POST['lName']);
+      $stmtAdd->execute();
+      echo '<div class="alert alert-success" role="alert">New customer added.</div>';
+      break;
+    case 'Edit':
+      $sqlEdit = "update Customer set Customer_FirstName=?, Customer_LastName=? WHERE Customer_ID=?";
+      $stmtEdit = $conn->prepare($sqlEdit);
+      $stmtEdit->bind_param("ssi", $_POST[cName],$_POST['lName'],$_POST['cid']);
+      $stmtEdit->execute();
+      echo '<div class="alert alert-success" role="alert">Customer edited.</div>';
+      break;
+    case 'Delete':
+      $sqlDelete = "delete from Customer where Customer_ID=?";
+      $stmtDelete = $conn->prepare($sqlDelete);
+      $stmtDelete->bind_param("i", $_POST['cid']);
+      $stmtDelete->execute();
+      echo '<div class="alert alert-success" role="alert">Instructor deleted.</div>';
+      break;
+  }
+}
 
 $sql = "SELECT DISTINCT Customer_ID, Customer_FirstName, Customer_LastName FROM Customer";
 $result = $conn->query($sql);
@@ -59,16 +84,44 @@ if ($result->num_rows > 0) {
     <td><?=$row["Customer_FirstName"]?></td>
     <td><?=$row["Customer_LastName"]?></td>
     <td>
+              <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#editCustomer<?=$row["Customer_ID"]?>">
+                Edit
+              </button>
+              <div class="modal fade" id="editCustomer<?=$row["Customer_ID"]?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editCustomer<?=$row["Customer_ID"]?>Label" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="editCustomer<?=$row["instructor_id"]?>Label">Edit Customer</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form method="post" action="">
+                        <div class="mb-3">
+                          <label for="editCustomer<?=$row["Customer_ID"]?>Name" class="form-label">Name</label>
+                          <input type="text" class="form-control" id="editCustomer<?=$row["Customer_ID"]?>Name" aria-describedby="editCustomer<?=$row["Customer_ID"]?>Help" name="cName" value="<?=$row['Customer_FirstName']?>">
+                          <div id="editCustomer<?=$row["Customer_ID"]?>Help" class="form-text">Enter the customer's name.</div>
+                        </div>
+                        <div class="mb-3">
+                          <label for="editCustomer<?=$row["Customer_ID"]?>Name" class="form-label">Name</label>
+                          <input type="text" class="form-control" id="editCustomer<?=$row["Customer_ID"]?>Name" aria-describedby="editCustomer<?=$row["Customer_ID"]?>Help" name="lName" value="<?=$row['Customer_LastName']?>">
+                          <div id="editCustomer<?=$row["Customer_ID"]?>Help" class="form-text">Enter the customer's name.</div>
+                        </div>
+                        <input type="hidden" name="cid" value="<?=$row['Customer_ID']?>">
+                        <input type="hidden" name="saveType" value="Edit">
+                        <input type="submit" class="btn btn-primary" value="Submit">
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+    <td>
        <form method="post" action="customer-delete-save.php">
                 <input type="hidden" name="cid" value="<?=$row["Customer_ID"]?>" />
+                <input type="hidden" name="saveType" value="Delete"
                 <input type="submit" value="Delete" class="btn btn-primary"/>
                 
               </form>
-      <form method="post" action="customer-edit.php">
-        <input type="hidden" name="cid" value="<?=$row["Customer_ID"]?>" />
-        <input type="submit" value="Edit" class="btn btn-danger"/>
-      </form>
-      
     </td>
   </tr>
 <?php
@@ -81,5 +134,39 @@ $conn->close();
   </tbody>
     </table>
     <br />
-    <a href="customer-add.php" class="btn btn-primary"> Add New<a/>
-      <a href="customer-delete-save.php" class="btn btn-primary"> Delete Record<a/>
+     <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCustomer">
+        Add New
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="addCustomer" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addCustomerLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="addCustomerLabel">Add Customer</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form method="post" action="">
+                <div class="mb-3">
+                  <label for="Customer_FirstName" class="form-label">Name</label>
+                  <input type="text" class="form-control" id="Customer_FirstName" aria-describedby="nameHelp" name="cName">
+                  <div id="nameHelp" class="form-text">Enter the customer's first name.</div>
+                </div>
+                <div class="mb-3">
+                  <label for="Customer_LastName" class="form-label">Name</label>
+                  <input type="text" class="form-control" id="Customer_LastName" aria-describedby="nameHelp" name="lName">
+                  <div id="nameHelp" class="form-text">Enter the customer's last name.</div>
+                </div>
+                <input type="hidden" name="saveType" value="Add">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+  </body>
+</html>
