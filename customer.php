@@ -49,7 +49,7 @@ if ($conn->connect_error) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   switch ($_POST['saveType']) {
     case 'Add':
-      $sqlAdd = "INSERT INTO customer (Customer_FirstName, Customer_LastName) values (?,?)";
+      $sqlAdd = "INSERT INTO Customer (Customer_FirstName, Customer_LastName) values (?,?)";
       $stmtAdd = $conn->prepare($sqlAdd);
       $stmtAdd->bind_param("ss", $_POST['cName'],$_POST['lName']);
       $stmtAdd->execute();
