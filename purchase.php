@@ -108,7 +108,7 @@ if ($result->num_rows > 0) {
                                     $selText ="";
                                   }
                             ?>
-                              <option value="<?=$purchaseRow['Purchase_ID']?>"<?=$selText>><?=$purchaseRow['Customer_ID']?></option>
+                              <option value="<?=$purchaseRow['Purchase_ID']?>"<?=$selText?>><?=$purchaseRow['Customer_ID']?></option>
                             <?php
                                   }
                             ?>
