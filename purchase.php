@@ -96,7 +96,7 @@ if ($result->num_rows > 0) {
                     <div class="modal-body">
                       <form method="post" action="">
                         <div class="mb-3">
-                          <label for="editPurchase<?=$row["Purchase_ID"]?>Name" class="form-label">Name</label>
+                          <label for="editPurchase<?=$row["Purchase_ID"]?>Name" class="form-label">Purchase</label>
                           <input type="text" class="form-control" id="editPurchase<?=$row["Purchase_ID"]?>Name" aria-describedby="editPurchase<?=$row["Purchase_ID"]?>Help" name="cID" value="<?=$row['Customer_ID']?>">
                           <div id="editPurchase<?=$row["Purchase_ID"]?>Help" class="form-text">Enter the customer's ID.</div>
                         </div>
