@@ -70,7 +70,7 @@ if ($result->num_rows > 0) {
   while($row = $result->fetch_assoc()) {
 ?>
       
-  <h1>Customers</h1>
+  
   <table class="table table-striped">
   <thead>
     <tr>
