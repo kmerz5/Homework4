@@ -19,8 +19,6 @@
       <a class="nav-item nav-link" href="employee.php">Employee</a>
       <a class="nav-item nav-link" href="purchase.php">Purchase</a>
       <a class="nav-item nav-link" href="restaurant.php">Restaurant</a>
-      
-      
     </div>
   </div>
 </nav>
@@ -47,6 +45,32 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
+    
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  switch ($_POST['saveType']) {
+    case 'Add':
+      $sqlAdd = "INSERT INTO Employee (Employee_FirstName, Employee_LastName) values (?,?)";
+      $stmtAdd = $conn->prepare($sqlAdd);
+      $stmtAdd->bind_param("ss", $_POST['eName'],$_POST['elName']);
+      $stmtAdd->execute();
+      echo '<div class="alert alert-success" role="alert">New customer added.</div>';
+      break;
+    case 'Edit':
+      $sqlEdit = "UPDATE Employee SET Employee_FirstName=?, Employee_LastName=? WHERE Employee_ID=?";
+      $stmtEdit = $conn->prepare($sqlEdit);
+      $stmtEdit->bind_param("ssi", $_POST['eName'],$_POST['elName'],$_POST['eid']);
+      $stmtEdit->execute();
+      echo '<div class="alert alert-success" role="alert">Customer edited.</div>';
+      break;
+    case 'Delete':
+      $sqlDelete = "DELETE FROM Employee WHERE Employee_ID=?";
+      $stmtDelete = $conn->prepare($sqlDelete);
+      $stmtDelete->bind_param("i", $_POST['eid']);
+      $stmtDelete->execute();
+      echo '<div class="alert alert-success" role="alert">Customer deleted.</div>';
+      break;
+  }
+}
 
 $sql = "SELECT DISTINCT Restaurant_ID, Employee_ID, Employee_FirstName, Employee_LastName FROM Employee";
 $result = $conn->query($sql);
@@ -62,16 +86,45 @@ if ($result->num_rows > 0) {
     <td><?=$row["Employee_LastName"]?></td>
   </tr>
      <td>
-       <form method="post" action="employee-delete-save.php">
+       <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editEmployee<?=$row["Employee_ID"]?>">
+                Edit
+              </button>
+              <div class="modal fade" id="editEmployee<?=$row["Employee_ID"]?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editEmployee<?=$row["Employee_ID"]?>Label" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="editEmployee<?=$row["Employee_ID"]?>Label">Edit Employee</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form method="post" action="">
+                        <div class="mb-3">
+                          <label for="editEmployee<?=$row["Employee_ID"]?>Name" class="form-label">Name</label>
+                          <input type="text" class="form-control" id="editEmployee<?=$row["Employee_ID"]?>Name" aria-describedby="editEmployee<?=$row["Employee_ID"]?>Help" name="eName" value="<?=$row['Employee_FirstName']?>">
+                          <div id="editEmployee<?=$row["Employee_ID"]?>Help" class="form-text">Enter the employee's first name.</div>
+                        </div>
+                         <div class="mb-3">
+                          <label for="editEmployee<?=$row["Employee_ID"]?>Name" class="form-label">Name</label>
+                          <input type="text" class="form-control" id="editEmployee<?=$row["Employee_ID"]?>Name" aria-describedby="editEmployee<?=$row["Employee_ID"]?>Help" name="elName" value="<?=$row['Employee_LastName']?>">
+                          <div id="editEmployee<?=$row["Employee_ID"]?>Help" class="form-text">Enter the employee's last name.</div>
+                        </div>
+                        <input type="hidden" name="eid" value="<?=$row['Employee_ID']?>">
+                        <input type="hidden" name="saveType" value="Edit">
+                        <input type="submit" class="btn btn-primary" value="Submit">
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+             <td>
+              <form method="post" action="">
                 <input type="hidden" name="eid" value="<?=$row["Employee_ID"]?>" />
-                <input type="submit" value="Delete" class="btn btn-primary"/>
-                
+                <input type="hidden" name="saveType" value="Delete">
+                <input type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')" value="Delete">
               </form>
-       <form method="post" action="employee-edit.php">
-        <input type="hidden" name="eid" value="<?=$row["Employee_ID"]?>" />
-        <input type="submit" value="Edit" class="btn btn-danger"/>
-      </form>
-    </td>
+            </td>
+          </tr>
 <?php
   }
 } else {
@@ -81,5 +134,41 @@ $conn->close();
 ?>
   </tbody>
     </table>
-    <a href="employee-add.php" class="btn btn-primary"> Add New<a/>
-      <a href="employee-delete-save.php" class="btn btn-primary"> Delete Record<a/>
+       <br />
+     <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addEmployee">
+        Add New
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="addEmployee" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addEmployeeLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="addEmployeeLabel">Add Customer</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form method="post" action="">
+                <div class="mb-3">
+                  <label for="Employee_FirstName" class="form-label">First Name</label>
+                  <input type="text" class="form-control" id="Employee_FirstName" aria-describedby="nameHelp" name="eName">
+                  <div id="nameHelp" class="form-text">Enter the employee's first name.</div>
+                </div>
+                <div class="mb-3">
+                  <label for="Employee_LastName" class="form-label">Last Name</label>
+                  <input type="text" class="form-control" id="Employee_LastName" aria-describedby="nameHelp" name="elName">
+                  <div id="nameHelp" class="form-text">Enter the employee's last name.</div>
+                </div>
+                <input type="hidden" name="saveType" value="Add">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+  </body>
+</html>
+    
