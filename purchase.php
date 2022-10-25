@@ -115,6 +115,7 @@ if ($result->num_rows > 0) {
                           </select>
                         </div>
                         <input type="hidden" name="pid" value="<?=$row['Purchase_ID']?>">
+                        <input type="hidden" name="saveType" value="Edit">
                         <button type="submit" class="btn btn-primary">Submit</button>
                       </form>
                     </div>
