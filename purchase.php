@@ -73,9 +73,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
     
 $sql = "SELECT * FROM Purchase";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $_POST['pid']);
-$stmt->execute();
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
