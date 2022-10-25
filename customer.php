@@ -117,7 +117,8 @@ $conn->close();
     </table>
     <br />
      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCustomer">Add New</a>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCustomer">
+        Add New
       </button>
 
       <!-- Modal -->
