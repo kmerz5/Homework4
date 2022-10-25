@@ -97,8 +97,9 @@ if ($result->num_rows > 0) {
                       <form method="post" action="">
                         <div class="mb-3">
                           <label for="editPurchase<?=$row["Purchase_ID"]?>Name" class="form-label">Purchase</label>
-                          <input type="text" class="form-control" id="editPurchase<?=$row["Purchase_ID"]?>Name" aria-describedby="editPurchase<?=$row["Purchase_ID"]?>Help" name="cID" value="<?=$row['Customer_ID']?>">
-                          <div id="editPurchase<?=$row["Purchase_ID"]?>Help" class="form-text">Enter the customer's ID.</div>
+                          <select class="form-select" aria-label="Select Customer ID" id="CustomerIDList" name="cil">
+                          //<input type="text" class="form-control" id="editPurchase<?=$row["Purchase_ID"]?>Name" aria-describedby="editPurchase<?=$row["Purchase_ID"]?>Help" name="cID" value="<?=$row['Customer_ID']?>">
+                         // <div id="editPurchase<?=$row["Purchase_ID"]?>Help" class="form-text">Enter the customer's ID.</div>
                         </div>
                         <input type="hidden" name="pid" value="<?=$row['Purchase_ID']?>">
                         <input type="hidden" name="saveType" value="Edit">
