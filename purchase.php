@@ -98,6 +98,21 @@ if ($result->num_rows > 0) {
                         <div class="mb-3">
                           <label for="editPurchase<?=$row["Purchase_ID"]?>Name" class="form-label">Purchase</label>
                           <select class="form-select" aria-label="Select Customer ID" id="CustomerIDList" name="cil">
+                            <?php
+                                $PurchaseSql = "SELECT * FROM Purchase ORDER BY Customer_ID";
+                                $PurchaseResult = $conn->query($PurchaseSql);
+                                while($purchaseRow = $PurchaseResult->fetch_assoc()) {
+                                  if($purchaseRow['Purchase_ID'] == $row['Purchase_ID']){
+                                    $selText = "selected";
+                                  } else {
+                                    $selText ="";
+                                  }
+                            ?>
+                              <option value="<?=$purchaseRow['Purchase_ID']?>"<?$selText>><?=$purchaseRow['Customer_ID']?></option>
+                            <?php
+                                  }
+                            ?>
+                          </select>
                           //<input type="text" class="form-control" id="editPurchase<?=$row["Purchase_ID"]?>Name" aria-describedby="editPurchase<?=$row["Purchase_ID"]?>Help" name="cID" value="<?=$row['Customer_ID']?>">
                          // <div id="editPurchase<?=$row["Purchase_ID"]?>Help" class="form-text">Enter the customer's ID.</div>
                         </div>
