@@ -87,7 +87,7 @@ if ($result->num_rows > 0) {
     <td><?=$row["Customer_FirstName"]?></td>
     <td><?=$row["Customer_LastName"]?></td>
     <td>
-       <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#editCustomer<?=$row["Customer_ID"]?>">
+       <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editCustomer<?=$row["Customer_ID"]?>">
                 Edit
               </button>
               <div class="modal fade" id="editCustomer<?=$row["Customer_ID"]?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editCustomer<?=$row["Customer_ID"]?>Label" aria-hidden="true">
