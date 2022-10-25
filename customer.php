@@ -87,12 +87,6 @@ if ($result->num_rows > 0) {
     <td><?=$row["Customer_FirstName"]?></td>
     <td><?=$row["Customer_LastName"]?></td>
     <td>
-       <form method="post" action="customer-add.php">
-        <input type="hidden" name="cid" value="<?=$row["Customer_ID"]?>" />
-        <input type="submit" value="Add" />
-      </form>
-    </td>
-    <td>
     <form method="post" action="customer-edit.php">
         <input type="hidden" name="cid" value="<?=$row["Customer_ID"]?>" />
         <input type="submit" value="Edit" class="btn btn-danger" />
