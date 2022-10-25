@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     case 'Edit':
       $sqlEdit = "UPDATE Customer SET Customer_FirstName=?, Customer_LastName=? WHERE Customer_ID=?";
       $stmtEdit = $conn->prepare($sqlEdit);
-      $stmtEdit->bind_param("ss", $_POST[cName],$_POST['lName']);
+      $stmtEdit->bind_param("ssi", $_POST['cName'],$_POST['lName'],$_POST['cid']);
       $stmtEdit->execute();
       echo '<div class="alert alert-success" role="alert">Customer edited.</div>';
       break;
