@@ -22,7 +22,18 @@
     </div>
   </div>
 </nav>
-      
+
+ <table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Customer ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody> 
 <?php
 $servername = "localhost";
 $username = "kyliemer_Homework3";
@@ -60,8 +71,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       break;
   }
 }
-?>
-<?php
+
+
 $sql = "SELECT DISTINCT Customer_ID, Customer_FirstName, Customer_LastName FROM Customer";
 $result = $conn->query($sql);
 
@@ -70,36 +81,51 @@ if ($result->num_rows > 0) {
   while($row = $result->fetch_assoc()) {
 ?>
       
-  
-  <table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Customer ID</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody> 
+
   <tr>
     <td><?=$row["Customer_ID"]?></td>
     <td><?=$row["Customer_FirstName"]?></td>
     <td><?=$row["Customer_LastName"]?></td>
     <td>
-    <form method="post" action="customer-edit.php">
-        <input type="hidden" name="cid" value="<?=$row["Customer_ID"]?>" />
-        <input type="submit" value="Edit" class="btn btn-danger" />
-    </form>
-
-    </td>
-       <td>
-    <form method="post" action="customer-delete-save.php">
-        <input type="hidden" name="cid" value="<?=$row["Customer_ID"]?>" />
-        <input type="submit" value="Delete" class="btn btn-primary" onclick="return confirm('Are you sure?')" />
-    </form>
-    </td>
-   </tr>
+       <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#editCustomer<?=$row["Customer_ID"]?>">
+                Edit
+              </button>
+              <div class="modal fade" id="editCustomer<?=$row["Customer_ID"]?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editCustomer<?=$row["Customer_ID"]?>Label" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="editCustomer<?=$row["Customer_ID"]?>Label">Edit Customer</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form method="post" action="">
+                        <div class="mb-3">
+                          <label for="editCustomer<?=$row["Customer_ID"]?>Name" class="form-label">Name</label>
+                          <input type="text" class="form-control" id="editCustomer<?=$row["Customer_ID"]?>Name" aria-describedby="editCustomer<?=$row["Customer_ID"]?>Help" name="cName" value="<?=$row['Customer_FirstName']?>">
+                          <div id="editCustomer<?=$row["Customer_ID"]?>Help" class="form-text">Enter the customer's first name.</div>
+                        </div>
+                         <div class="mb-3">
+                          <label for="editCustomer<?=$row["Customer_ID"]?>Name" class="form-label">Name</label>
+                          <input type="text" class="form-control" id="editCustomer<?=$row["Customer_ID"]?>Name" aria-describedby="editCustomer<?=$row["Customer_ID"]?>Help" name="lName" value="<?=$row['Customer_LastName']?>">
+                          <div id="editCustomer<?=$row["Customer_ID"]?>Help" class="form-text">Enter the customer's last name.</div>
+                        </div>
+                        <input type="hidden" name="cid" value="<?=$row['Customer_ID']?>">
+                        <input type="hidden" name="saveType" value="Edit">
+                        <input type="submit" class="btn btn-primary" value="Submit">
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+             <td>
+              <form method="post" action="">
+                <input type="hidden" name="cid" value="<?=$row["Customer_ID"]?>" />
+                <input type="hidden" name="saveType" value="Delete">
+                <input type="submit" class="btn" onclick="return confirm('Are you sure?')" value="Delete">
+              </form>
+            </td>
+          </tr>
 <?php
      }
 } else {
