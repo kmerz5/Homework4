@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     case 'Add':
       $sqlAdd = "INSERT INTO customer (Customer_FirstName, Customer_LastName) value (?,?)";
       $stmtAdd = $conn->prepare($sqlAdd);
-      $stmtAdd->bind_param("ss", $_POST['cName'],$_POST['lName']);
+      $stmtAdd->bind_param("ssi", $_POST['cName'],$_POST['lName'],$_POST['cid']);
       $stmtAdd->execute();
       echo '<div class="alert alert-success" role="alert">New customer added.</div>';
       break;
