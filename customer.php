@@ -9,7 +9,7 @@
   <body>
     <div class="container">
       
-<?php>
+<?php
 $servername = "localhost";
 $username = "kyliemer_Homework3";
 $password = "ChunkyMonkey01!";
