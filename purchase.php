@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     case 'Add':
       $sqlAdd = "INSERT INTO Purchase (Customer_ID) values (?)";
       $stmtAdd = $conn->prepare($sqlAdd);
-      $stmtAdd->bind_param("s", $_POST['cID']);
+      $stmtAdd->bind_param("ii", $_POST['cID'], $_POST['cil']);
       $stmtAdd->execute();
       echo '<div class="alert alert-success" role="alert">New customer ID added.</div>';
       break;
